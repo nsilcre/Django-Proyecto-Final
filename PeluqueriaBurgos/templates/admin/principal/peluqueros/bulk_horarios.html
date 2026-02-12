@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block content %}
+  <div id="content-main">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <fieldset class="module aligned">
+        <h2>Asignar turnos por fechas</h2>
+        <p class="help">
+          Selecciona uno o varios peluqueros, un rango de fechas y el turno.
+          Esto guarda 1 registro por peluquero (no crea slots), así la base de datos no se llena.
+          <br>
+          Nota: estos turnos por fechas tienen prioridad sobre el horario semanal.
+        </p>
+        {{ form.as_p }}
+      </fieldset>
+      <div class="submit-row">
+        <input type="submit" value="Guardar" class="default">
+        <a class="button cancel-link" href="..">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

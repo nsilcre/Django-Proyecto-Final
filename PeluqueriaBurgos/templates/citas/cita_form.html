@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ titulo }} - Peluquería Burgos{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">{{ titulo }}</h2>
+
+<form method="post" id="cita-form" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.servicio.id_for_label }}">{{ form.servicio.label }}</label>
+        {{ form.servicio }}
+        {% for error in form.servicio.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.peluquero.id_for_label }}">{{ form.peluquero.label }}</label>
+        {{ form.peluquero }}
+        {% for error in form.peluquero.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+        <div class="form-text">Primero elige un servicio para ver los peluqueros disponibles.</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label" for="{{ form.fecha.id_for_label }}">{{ form.fecha.label }}</label>
+            {{ form.fecha }}
+            {% for error in form.fecha.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label" for="{{ form.hora.id_for_label }}">{{ form.hora.label }}</label>
+            {{ form.hora }}
+            {% for error in form.hora.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+            <div class="form-text">
+                Las horas se calculan según el horario del peluquero y las citas existentes.
+                <br>
+                Cerrado los domingos y de 13:30 a 15:00.
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.motivo.id_for_label }}">{{ form.motivo.label }}</label>
+        {{ form.motivo }}
+        {% for error in form.motivo.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'mis_citas' %}" class="btn btn-secondary">Volver</a>
+</form>
+
+<script>
+(() => {
+    const API_PELUQUEROS_URL = "{% url 'api_peluqueros_por_servicio' %}";
+    const API_HORAS_URL = "{% url 'api_horas_disponibles' %}";
+
+    const servicioEl = document.getElementById('id_servicio');
+    const peluqueroEl = document.getElementById('id_peluquero');
+    const fechaEl = document.getElementById('id_fecha');
+    const horaEl = document.getElementById('id_hora');
+
+    if (!servicioEl || !peluqueroEl || !fechaEl || !horaEl) {
+        return;
+    }
+
+    const resetSelect = (el, placeholder) => {
+        el.innerHTML = '';
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = placeholder;
+        el.appendChild(opt);
+    };
+
+    const fillSelect = (el, items, placeholder) => {
+        resetSelect(el, placeholder);
+        for (const item of items) {
+            const opt = document.createElement('option');
+            opt.value = item.value;
+            opt.textContent = item.label;
+            el.appendChild(opt);
+        }
+    };
+
+    const initialPeluquero = peluqueroEl.value;
+    const initialHora = horaEl.value;
+
+    async function cargarPeluqueros() {
+        const servicioId = servicioEl.value;
+
+        fillSelect(
+            peluqueroEl,
+            [],
+            servicioId ? 'Selecciona un peluquero' : 'Primero elige un servicio'
+        );
+        fillSelect(horaEl, [], 'Selecciona una hora');
+
+        if (!servicioId) {
+            return;
+        }
+
+        const resp = await fetch(`${API_PELUQUEROS_URL}?servicio_id=${encodeURIComponent(servicioId)}`);
+        if (!resp.ok) {
+            return;
+        }
+        const data = await resp.json();
+        const items = (data.peluqueros || []).map(p => ({ value: p.id, label: p.nombre }));
+        fillSelect(peluqueroEl, items, 'Selecciona un peluquero');
+    }
+
+    async function cargarHoras() {
+        const servicioId = servicioEl.value;
+        const peluqueroId = peluqueroEl.value;
+        const fecha = fechaEl.value;
+
+        fillSelect(horaEl, [], 'Selecciona una hora');
+
+        if (!servicioId || !peluqueroId || !fecha) {
+            return;
+        }
+
+        const url = `${API_HORAS_URL}?servicio_id=${encodeURIComponent(servicioId)}` +
+            `&peluquero_id=${encodeURIComponent(peluqueroId)}` +
+            `&fecha=${encodeURIComponent(fecha)}`;
+
+        const resp = await fetch(url);
+        if (!resp.ok) {
+            return;
+        }
+
+        const data = await resp.json();
+        const horas = data.horas || [];
+
+        if (horas.length === 0) {
+            resetSelect(horaEl, '(No hay horas disponibles)');
+            horaEl.querySelector('option').disabled = true;
+            return;
+        }
+
+        const items = horas.map(h => ({ value: h, label: h }));
+        fillSelect(horaEl, items, 'Selecciona una hora');
+    }
+
+    servicioEl.addEventListener('change', async () => {
+        await cargarPeluqueros();
+        await cargarHoras();
+    });
+
+    peluqueroEl.addEventListener('change', cargarHoras);
+    fechaEl.addEventListener('change', cargarHoras);
+
+    // Edición: precargar combos conservando los valores actuales
+    (async () => {
+        if (!servicioEl.value) {
+            return;
+        }
+        await cargarPeluqueros();
+        if (initialPeluquero) {
+            peluqueroEl.value = initialPeluquero;
+        }
+        await cargarHoras();
+        if (initialHora) {
+            horaEl.value = initialHora;
+        }
+    })();
+})();
+</script>
+{% endblock content %}
