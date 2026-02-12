@@ -3,59 +3,70 @@
 {% block title %}Inicio - Peluquería Burgos{% endblock title %}
 
 {% block content %}
-<div class="hero rounded-4 p-4 p-md-5 mb-4">
-    <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-            <h1 class="display-6 fw-bold">Peluquería Burgos</h1>
-            <p class="fs-5 text-muted-2 mt-3 mb-4">
-                Reserva tu cita en pocos pasos: elige servicio, selecciona peluquero y escoge la hora disponible.
-            </p>
-            <div class="d-flex gap-2 flex-wrap">
-                <a class="btn btn-primary btn-lg" href="{% url 'reservas' %}">Reservar una cita</a>
-                {% if not user.is_authenticated %}
-                    <a class="btn btn-outline-dark btn-lg" href="{% url 'login' %}">Iniciar sesión</a>
-                {% endif %}
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center">
+    <div class="position-relative z-1 px-3 fade-in">
+        <h1 class="display-3 fw-bold mb-3 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Peluquería
+            Burgos
+        </h1>
+        <p class="lead mb-4 fs-4 text-white" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Estilo, elegancia y
+            perfección en cada detalle.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-primary btn-lg px-5 py-3 shadow-lg" href="{% url 'reservas' %}">Reservar Cita</a>
+            {% if not user.is_authenticated %}
+            <a class="btn btn-outline-light btn-lg px-5 py-3 shadow-lg" href="{% url 'login' %}">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="display-5 mb-3">Nuestra Experiencia</h2>
+        <div class="d-inline-block border-bottom border-warning border-3 w-25"></div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100 border-0 bg-surface shadow-sm hover-lift text-center p-4">
+            <div class="card-body">
+                <div class="mb-3 text-gold display-4">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <h3 class="h4 card-title mb-3">Servicios Exclusivos</h3>
+                <p class="text-muted mb-0">Cortes de precisión, coloración experta y tratamientos personalizados para
+                    renovar tu imagen.</p>
             </div>
         </div>
-        <div class="col-lg-5">
-            <div class="card rounded-4">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Cómo funciona</h5>
-                    <ol class="mb-0">
-                        <li>Selecciona el servicio.</li>
-                        <li>Elige un peluquero disponible.</li>
-                        <li>Escoge fecha y hora.</li>
-                    </ol>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 bg-surface shadow-sm hover-lift text-center p-4">
+            <div class="card-body">
+                <div class="mb-3 text-gold display-4">
+                    <i class="fas fa-user-tie"></i>
                 </div>
+                <h3 class="h4 card-title mb-3">Estilistas Expertos</h3>
+                <p class="text-muted mb-0">Nuestro equipo de profesionales está comprometido con la excelencia y tu
+                    satisfacción.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 border-0 bg-surface shadow-sm hover-lift text-center p-4">
+            <div class="card-body">
+                <div class="mb-3 text-gold display-4">
+                    <i class="far fa-calendar-check"></i>
+                </div>
+                <h3 class="h4 card-title mb-3">Reserva Fácil</h3>
+                <p class="text-muted mb-0">Gestiona tus citas online. Elige tu especialista y horario preferido en
+                    segundos.</p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row g-3">
-    <div class="col-md-4">
-        <div class="card rounded-4 h-100">
-            <div class="card-body">
-                <h6 class="text-uppercase text-muted mb-2">Servicios</h6>
-                <p class="mb-0">Cortes, color, peinados y más.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card rounded-4 h-100">
-            <div class="card-body">
-                <h6 class="text-uppercase text-muted mb-2">Profesionales</h6>
-                <p class="mb-0">Elige el peluquero que mejor se adapte a ti.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card rounded-4 h-100">
-            <div class="card-body">
-                <h6 class="text-uppercase text-muted mb-2">Reservas</h6>
-                <p class="mb-0">Horarios disponibles en tiempo real.</p>
-            </div>
-        </div>
-    </div>
+<div class="bg-surface rounded-4 p-5 text-center shadow-lg border border-secondary border-opacity-10 mb-5">
+    <h2 class="h3 mb-4">¿Listo para un cambio de look?</h2>
+    <p class="text-muted mb-4 mw-600 mx-auto">Déjanos cuidar de tu imagen. Reserva hoy mismo y vive la experiencia
+        Peluquería Burgos.</p>
+    <a href="{% url 'reservas' %}" class="btn btn-primary btn-lg">Agendar mi Cita</a>
 </div>
 {% endblock content %}

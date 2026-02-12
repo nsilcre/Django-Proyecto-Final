@@ -231,14 +231,6 @@ class HorarioPeluqueroAdmin(admin.ModelAdmin):
     list_filter = ("peluquero", "dia_semana", "activo")
     ordering = ("peluquero", "dia_semana", "hora_inicio")
 
-
-@admin.register(TurnoPeluquero)
-class TurnoPeluqueroAdmin(admin.ModelAdmin):
-    list_display = ("peluquero", "fecha_inicio", "fecha_fin", "turno", "activo")
-    list_filter = ("turno", "activo")
-    search_fields = ("peluquero__nombre", "peluquero__apellido")
-    ordering = ("-fecha_inicio", "peluquero")
-
     def get_form(self, request, obj=None, **kwargs):
         # En 'add' usamos el formulario con multiselección.
         if obj is None:
@@ -290,6 +282,14 @@ class TurnoPeluqueroAdmin(admin.ModelAdmin):
             request,
             f"Horario semanal asignado. Creados: {created_count}. Actualizados: {updated_count}.",
         )
+
+
+@admin.register(TurnoPeluquero)
+class TurnoPeluqueroAdmin(admin.ModelAdmin):
+    list_display = ("peluquero", "fecha_inicio", "fecha_fin", "turno", "activo")
+    list_filter = ("turno", "activo")
+    search_fields = ("peluquero__nombre", "peluquero__apellido")
+    ordering = ("-fecha_inicio", "peluquero")
 
 
 @admin.register(Cita)

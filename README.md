@@ -1,150 +1,98 @@
-# Peluquería Burgos
+# ✂️ Peluquería Burgos
 
-Sistema de gestión de citas para peluquería desarrollado con Django.
-
+![Status](https://img.shields.io/badge/Status-Active-success)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Django](https://img.shields.io/badge/Django-5.2-green.svg)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Bootstrap](https://img.shields.io/badge/Design-Premium-gold)
 
-## Descripción
+> **Sistema integral de gestión de citas para peluquerías.**
+> Elegancia y eficiencia en una sola plataforma.
 
-Aplicación web que permite a los clientes de una peluquería gestionar sus citas de forma sencilla. El sistema incluye:
+## 📋 Descripción
 
-- **Reserva de citas**: Selección de servicio, peluquero, fecha y hora disponible
-- **Gestión de citas**: Visualización, edición y cancelación de reservas
-- **Panel de administración**: Gestión completa de peluqueros, servicios, horarios y turnos
-- **Validación de disponibilidad**: Cálculo automático de horas libres según horarios y citas existentes
+**Peluquería Burgos** es una aplicación web moderna diseñada para optimizar la reserva de citas y la gestión operativa de una peluquería. Con un diseño **"Black & Gold"** premium, ofrece una experiencia de usuario sofisticada y una herramienta administrativa potente.
 
-## Características
+El sistema permite a los clientes reservar citas en tiempo real, validando automáticamente la disponibilidad de los estilistas, respetando turnos, horarios de comida y días festivos.
 
-- Autenticación de usuarios con validación de contraseñas
-- Horarios flexibles por peluquero (plantilla semanal + turnos por fechas)
-- API interna para selección dinámica de peluqueros y horas
-- Reglas de negocio configurables (horario de apertura, cierre por comida, días festivos)
-- Interfaz responsive con Bootstrap 5
+## ✨ Características Principales
 
-## Requisitos
+### 🧑‍💻 Para el Cliente
+*   **Diseño Premium**: Interfaz oscura y elegante, totalmente responsive.
+*   **Reserva Inteligente**: Asistente paso a paso para elegir servicio, profesional y hora.
+*   **Disponibilidad Real**: Cálculo automático de huecos libres (30 min) evitando solapes.
+*   **Gestión Personal**: Panel "Mis Citas" para consultar historial y cancelar reservas pendientes.
 
-- Python 3.10 o superior
-- Django 5.2+
+### 🏢 Para la Administración
+*   **Gestión de Profesionales**: Alta de peluqueros y asignación de servicios especializados.
+*   **Control de Horarios**:
+    *   Plantillas semanales (Lunes-Sábado).
+    *   **Turnos por Fechas**: Asignación masiva de turnos (Mañana/Tarde/Completo) para periodos específicos.
+*   **Reglas de Negocio Automatizadas**:
+    *   Cierre automático domingos.
+    *   Bloqueo de hora de comida (13:30 - 15:00).
+    *   Validación de duplicidad de citas.
 
-## Instalación
+## 🛠️ Tecnologías
 
-1. **Clonar el repositorio**
+Este proyecto está construido con un stack robusto y moderno:
 
-```bash
-git clone https://github.com/tu-usuario/peluqueria-burgos.git
-cd peluqueria-burgos
-```
+*   **Backend**: Python, Django 5.2
+*   **Frontend**: HTML5, CSS3 (Custom Variables), JavaScript Vanilla, Bootstrap 5.3
+*   **Base de Datos**: SQLite (Dev), extensible a PostgreSQL
+*   **Seguridad**: Autenticación Django, Validadores de contraseña personalizados
 
-2. **Crear y activar entorno virtual**
+## 🚀 Instalación y Puesta en Marcha
 
-```bash
-python -m venv venv
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
-# Windows
-venv\Scripts\activate
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/tu-usuario/peluqueria-burgos.git
+    cd peluqueria-burgos
+    ```
 
-# Linux/macOS
-source venv/bin/activate
-```
+2.  **Crear entorno virtual:**
+    ```bash
+    python -m venv venv
+    # Windows
+    venv\Scripts\activate
+    # Mac/Linux
+    source venv/bin/activate
+    ```
 
-3. **Instalar dependencias**
+3.  **Instalar dependencias:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-```bash
-pip install -r requirements.txt
-```
+4.  **Configurar base de datos:**
+    ```bash
+    cd PeluqueriaBurgos
+    python manage.py migrate
+    ```
 
-4. **Aplicar migraciones**
+5.  **Crear superusuario (Administrador):**
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-```bash
-cd PeluqueriaBurgos
-python manage.py migrate
-```
+6.  **Iniciar servidor:**
+    ```bash
+    python manage.py runserver
+    ```
 
-5. **Crear superusuario**
+7.  **Acceder:** Aboe tu navegador en `http://127.0.0.1:8000/`
 
-```bash
-python manage.py createsuperuser
-```
+## 🧪 Usuarios de Prueba
 
-6. **Ejecutar servidor de desarrollo**
+Para facilitar las pruebas, puedes usar el script de creación de usuario o los siguientes datos si ya los has generado:
 
-```bash
-python manage.py runserver
-```
+*   **Usuario**: `GertrudisMena`
+*   **Contraseña**: `GertrudisMena`
 
-7. Acceder a `http://127.0.0.1:8000/`
+## 📄 Licencia
 
-## Estructura del Proyecto
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
-```
-PeluqueriaBurgos/
-├── PeluqueriaBurgos/          # Configuración del proyecto
-│   ├── settings.py
-│   ├── urls.py
-│   ├── password_validators.py
-│   └── wsgi.py
-├── Principal/                  # Aplicación principal
-│   ├── models.py              # Modelos: Peluquero, Servicio, Cliente, Cita...
-│   ├── views.py               # Vistas y API endpoints
-│   ├── forms.py               # Formularios
-│   ├── admin.py               # Configuración del panel admin
-│   └── static/css/            # Estilos personalizados
-├── templates/                  # Plantillas HTML
-│   ├── base.html
-│   ├── principal.html
-│   ├── registration/
-│   └── citas/
-└── manage.py
-```
-
-## Modelos Principales
-
-| Modelo | Descripción |
-|--------|-------------|
-| `Peluqueros` | Profesionales con servicios asignados |
-| `Servicio` | Servicios ofrecidos con duración y precio |
-| `Cliente` | Clientes vinculados a usuarios del sistema |
-| `HorarioPeluquero` | Plantilla de horario semanal por peluquero |
-| `TurnoPeluquero` | Turnos específicos por rango de fechas |
-| `Cita` | Reservas con fecha, hora, servicio y estado |
-
-## Reglas de Negocio
-
-- **Horario**: 08:00 - 21:00
-- **Cierre por comida**: 13:30 - 15:00
-- **Domingos**: Cerrado
-- **Bloques de cita**: 30 minutos
-- **Contraseñas**: Mínimo 6 caracteres, al menos una mayúscula
-
-## API Endpoints
-
-| Endpoint | Método | Descripción |
-|----------|--------|-------------|
-| `/api/peluqueros/` | GET | Peluqueros por servicio |
-| `/api/horas-disponibles/` | GET | Horas libres por peluquero/fecha |
-
-## Uso del Panel de Administración
-
-1. Acceder a `/admin/` con credenciales de superusuario
-2. Configurar servicios disponibles
-3. Añadir peluqueros y asignarles servicios
-4. Establecer horarios semanales o turnos por fechas
-5. Gestionar citas y clientes
-
-## Tecnologías Utilizadas
-
-- **Backend**: Django 5.2, Python 3.10+
-- **Frontend**: HTML5, CSS3, JavaScript (vanilla)
-- **Framework CSS**: Bootstrap 5.3
-- **Base de datos**: SQLite (desarrollo)
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
-## Autor
-
-Desarrollado como proyecto final de DAW.
+---
+*Desarrollado con ❤️ como Proyecto Final de DAW.*
