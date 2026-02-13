@@ -87,16 +87,20 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 > *Nota: Las imágenes del proyecto pueden consultarse en la carpeta `docs/img`.*
 
-![Inicio](docs/img/screenshot1.png)
+![Inicio](Inicio1.png)
+![Inicio](Inicio2.png)
 *Página Principal*
 
-![Reserva](docs/img/screenshot2.png)
+![Reserva](AñadirCita.png)
+![Reserva](AñadirCitaRellena.png)
 *Proceso de Reserva*
 
-![Mis Citas](docs/img/screenshot3.png)
+![Mis Citas](Citas.png)
+![Mis Citas](CitasModificadas.png)
 *Gestión de Citas*
 
-![Login](docs/img/screenshot4.png)
+![Login](login2.png)
+![Login](login1.png)
 *Inicio de Sesión*
 
 ## 🧪 Usuarios de Prueba
