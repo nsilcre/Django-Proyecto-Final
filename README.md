@@ -85,7 +85,7 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 ## 📸 Galería
 
-> *Nota: Las imágenes del proyecto pueden consultarse en la carpeta `docs/img`.*
+> *Nota: Las imágenes del proyecto pueden consultarse en la carpeta `img`.*
 
 ![Inicio](img/Inicio1.png)
 ![Inicio](img/Inicio2.png)
