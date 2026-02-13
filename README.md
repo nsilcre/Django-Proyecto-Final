@@ -122,10 +122,3 @@ Para probar la aplicación con diferentes roles:
 > **Importante sobre Horarios:**
 > En la base de datos actual, los **horarios de los peluqueros están configurados únicamente hasta el final de febrero**.
 > A partir de **marzo**, no hay citas ni turnos configurados, por lo que no aparecerá disponibilidad a menos que se generen nuevos horarios desde el panel de administración.
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
----
-*Desarrollado con ❤️ como Proyecto Final de DAW.*
