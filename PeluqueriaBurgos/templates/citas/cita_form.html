@@ -3,84 +3,90 @@
 {% block title %}{{ titulo }} - Peluquería Burgos{% endblock title %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8 fade-in">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h2 class="h3 text-gold mb-0">
-                <i class="far fa-calendar-plus me-2"></i>{{ titulo }}
-            </h2>
-            <a href="{% url 'mis_citas' %}" class="btn btn-outline-light btn-sm">
-                <i class="fas fa-arrow-left me-1"></i>Volver
-            </a>
-        </div>
+<div class="container-salon py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 fade-in">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h2 class="mb-0">
+                    <i class="far fa-calendar-plus me-2"></i>{{ titulo }}
+                </h2>
+                <a href="{% url 'mis_citas' %}" class="btn btn-sm"
+                    style="background-color: var(--color-sand); color: var(--color-charcoal); border-radius: 8px; padding: 0.5rem 1rem;">
+                    <i class="fas fa-arrow-left me-1"></i>Volver
+                </a>
+            </div>
 
-        <div class="card border-0 shadow-lg bg-surface">
-            <div class="card-body p-4 p-md-5">
-                <form method="post" id="cita-form" novalidate>
-                    {% csrf_token %}
+            <div class="bg-white rounded shadow-sm" style="border-radius: 12px;">
+                <div class="p-4 p-md-5">
+                    <form method="post" id="cita-form" novalidate>
+                        {% csrf_token %}
 
-                    {% if form.non_field_errors %}
-                    <div class="alert alert-danger rounded-3 mb-4">
-                        <i class="fas fa-exclamation-circle me-2"></i>{{ form.non_field_errors }}
-                    </div>
-                    {% endif %}
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger mb-4" style="border-radius: 12px;">
+                            <i class="fas fa-exclamation-circle me-2"></i>{{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
 
-                    <div class="mb-4">
-                        <label class="form-label" for="{{ form.servicio.id_for_label }}">1. Elige tu Servicio</label>
-                        {{ form.servicio }}
-                        {% for error in form.servicio.errors %}
-                        <div class="text-danger small mt-1">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label" for="{{ form.peluquero.id_for_label }}">2. Selecciona
-                            Peluquero</label>
-                        {{ form.peluquero }}
-                        {% for error in form.peluquero.errors %}
-                        <div class="text-danger small mt-1">{{ error }}</div>
-                        {% endfor %}
-                        <div class="form-text text-muted small">Primero elige un servicio para ver los profesionales
-                            disponibles.</div>
-                    </div>
-
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-6">
-                            <label class="form-label" for="{{ form.fecha.id_for_label }}">3. Fecha</label>
-                            {{ form.fecha }}
-                            {% for error in form.fecha.errors %}
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" for="{{ form.servicio.id_for_label }}">1. Elige tu
+                                Servicio</label>
+                            {{ form.servicio }}
+                            {% for error in form.servicio.errors %}
                             <div class="text-danger small mt-1">{{ error }}</div>
                             {% endfor %}
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="{{ form.hora.id_for_label }}">4. Hora</label>
-                            {{ form.hora }}
-                            {% for error in form.hora.errors %}
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" for="{{ form.peluquero.id_for_label }}">2. Selecciona
+                                Peluquero</label>
+                            {{ form.peluquero }}
+                            {% for error in form.peluquero.errors %}
                             <div class="text-danger small mt-1">{{ error }}</div>
                             {% endfor %}
+                            <div class="form-text text-muted small">Primero elige un servicio para ver los profesionales
+                                disponibles.</div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-text text-muted small">
-                                <i class="fas fa-info-circle me-1"></i>
-                                Cerrado domingos y festivos. Horario de comida: 13:30 - 15:00.
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="{{ form.fecha.id_for_label }}">3.
+                                    Fecha</label>
+                                {{ form.fecha }}
+                                {% for error in form.fecha.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="{{ form.hora.id_for_label }}">4. Hora</label>
+                                {{ form.hora }}
+                                {% for error in form.hora.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-12">
+                                <div class="form-text text-muted small">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Cerrado domingos y festivos. Horario de comida: 13:30 - 15:00.
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <label class="form-label" for="{{ form.motivo.id_for_label }}">Notas Adicionales
-                            (Opcional)</label>
-                        {{ form.motivo }}
-                        {% for error in form.motivo.errors %}
-                        <div class="text-danger small mt-1">{{ error }}</div>
-                        {% endfor %}
-                    </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold" for="{{ form.motivo.id_for_label }}">Notas Adicionales
+                                (Opcional)</label>
+                            {{ form.motivo }}
+                            {% for error in form.motivo.errors %}
+                            <div class="text-danger small mt-1">{{ error }}</div>
+                            {% endfor %}
+                        </div>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
-                        <a href="{% url 'mis_citas' %}" class="btn btn-outline-light px-4">Cancelar</a>
-                        <button type="submit" class="btn btn-primary px-5 shadow-sm">Confirmar Reserva</button>
-                    </div>
-                </form>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+                            <a href="{% url 'mis_citas' %}" class="btn btn-outline-secondary px-4"
+                                style="border-radius: 12px; padding-top: 0.75rem; padding-bottom: 0.75rem;">Cancelar</a>
+                            <button type="submit" class="btn-gold px-5">Confirmar Reserva</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
