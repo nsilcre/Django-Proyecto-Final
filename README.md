@@ -83,12 +83,40 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 7.  **Acceder:** Aboe tu navegador en `http://127.0.0.1:8000/`
 
+## 📸 Galería
+
+> *Nota: Las imágenes del proyecto pueden consultarse en la carpeta `docs/img`.*
+
+![Inicio](docs/img/screenshot1.png)
+*Página Principal*
+
+![Reserva](docs/img/screenshot2.png)
+*Proceso de Reserva*
+
+![Mis Citas](docs/img/screenshot3.png)
+*Gestión de Citas*
+
+![Login](docs/img/screenshot4.png)
+*Inicio de Sesión*
+
 ## 🧪 Usuarios de Prueba
 
-Para facilitar las pruebas, puedes usar el script de creación de usuario o los siguientes datos si ya los has generado:
+Para probar la aplicación con diferentes roles:
 
+### 👑 Administrador
+*   **Usuario**: `admin`
+*   **Contraseña**: `admin`
+
+### 👤 Cliente (Gertrudis)
 *   **Usuario**: `GertrudisMena`
-*   **Contraseña**: `GertrudisMena`
+*   **Contraseña**: `GertruMena`
+
+## ⚙️ Configuración y Datos de Ejemplo
+
+> [!NOTE]
+> **Importante sobre Horarios:**
+> En la base de datos actual, los **horarios de los peluqueros están configurados únicamente hasta el final de febrero**.
+> A partir de **marzo**, no hay citas ni turnos configurados, por lo que no aparecerá disponibilidad a menos que se generen nuevos horarios desde el panel de administración.
 
 ## 📄 Licencia
 
