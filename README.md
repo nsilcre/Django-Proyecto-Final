@@ -10,17 +10,17 @@
 
 ## 📋 Descripción
 
-**Peluquería Burgos** es una aplicación web moderna diseñada para optimizar la reserva de citas y la gestión operativa de una peluquería. Con un diseño **"Black & Gold"** premium, ofrece una experiencia de usuario sofisticada y una herramienta administrativa potente.
+**Peluquería Burgos** es una aplicación web moderna diseñada para optimizar la reserva de citas y la gestión operativa de una peluquería. Con un diseño **Premium Salon** (paleta cálida profesional: crema, dorado y charcoal), ofrece una experiencia de usuario sofisticada y una herramienta administrativa potente.
 
 El sistema permite a los clientes reservar citas en tiempo real, validando automáticamente la disponibilidad de los estilistas, respetando turnos, horarios de comida y días festivos.
 
 ## ✨ Características Principales
 
 ### 🧑‍💻 Para el Cliente
-*   **Diseño Premium**: Interfaz oscura y elegante, totalmente responsive.
+*   **Diseño Premium**: Interfaz elegante con paleta cálida profesional, totalmente responsive.
 *   **Reserva Inteligente**: Asistente paso a paso para elegir servicio, profesional y hora.
 *   **Disponibilidad Real**: Cálculo automático de huecos libres (30 min) evitando solapes.
-*   **Gestión Personal**: Panel "Mis Citas" para consultar historial y cancelar reservas pendientes.
+*   **Gestión Personal**: Panel "Mis Citas" para consultar historial, editar y cancelar reservas pendientes.
 
 ### 🏢 Para la Administración
 *   **Gestión de Profesionales**: Alta de peluqueros y asignación de servicios especializados.
@@ -40,6 +40,7 @@ Este proyecto está construido con un stack robusto y moderno:
 *   **Frontend**: HTML5, CSS3 (Custom Variables), JavaScript Vanilla, Bootstrap 5.3
 *   **Base de Datos**: SQLite (Dev), extensible a PostgreSQL
 *   **Seguridad**: Autenticación Django, Validadores de contraseña personalizados
+*   **Diseño**: Sistema de diseño personalizado con variables CSS y tipografía premium (Cormorant Garamond + Inter)
 
 ## 🚀 Instalación y Puesta en Marcha
 
@@ -81,7 +82,7 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
     python manage.py runserver
     ```
 
-7.  **Acceder:** Aboe tu navegador en `http://127.0.0.1:8000/`
+7.  **Acceder:** Abre tu navegador en `http://127.0.0.1:8000/`
 
 ## 📸 Galería
 
@@ -90,7 +91,7 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 ![Inicio](img/Inicio1.png)
 ![Inicio](img/Inicio2.png)
 ![Inicio](img/Inicio3.png)
-*Página Principal*
+*Página Principal - Diseño Premium Salon*
 
 ![Reserva](img/AñadirCita.png)
 *Proceso de Reserva*
